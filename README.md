@@ -1,4 +1,5 @@
-# converting_btrfs_root_partition_howto
+# Howto on converting root partition to btrfs 
+
 This how to describes the procedure to convert your linux root partition from ext4 to btrfs. 
 
 Use Case: Over a period of time, we make multiple changes to the OS, customize multiple applications and lose track of all the changes. Reinstalling the OS is really out of question. If you rely on tools like Timeshift to restore your OS, converting the root filesystem to btrfs is impossible without beginning from fresh. 
