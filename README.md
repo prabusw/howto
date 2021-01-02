@@ -36,20 +36,27 @@ Step4.
 Choose the recovery menu from the grub and drop in to the root shell. Perform the below steps as root user.
 
 4.1 Create a temporary folder tmproot on /run, which is the only writable folder for you now. 
+
 #mkdir /run/tmproot
 
 4.2 Mount your  root partition on the folder as 
+
 #mount /dev/sdax /run/tmproot
 
 4.3 Find your new device UUID by using the command lsblk -f
+
 #lsblk -f
 
 4.4 Edit your /etc/fstab file and comment out the old entry for /. Create a new entry by replacing the three options i.e filesystem UUID, type and options for (/) root. 
 The new /etc/fstab entry for (/) root will look like below after you’ve made the changes..(a truncated output of /etc/fstab given below for clarity)
+
 #cat /etc/fstab 
 # <file system> <mount point> <type> <options> <dump> <pass>
+  
 #UUID=1f16d419-121a-4b71-83e8-f6e38d969dbd   /    ext4  errors=remount-ro   0  1
+
 UUID=7c23009f-f0b0-4561-b576-031771763a32    /   btrfs  defaults,subvol=@   0  0
+
 
 Reboot your OS. 
 
