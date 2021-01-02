@@ -58,7 +58,6 @@ The new /etc/fstab entry for (/) root will look like below after you’ve made t
 
 UUID=7c23009f-f0b0-4561-b576-031771763a32    /   btrfs  defaults,subvol=@   0  0
 
-
-Reboot your OS. 
+4.5 Reboot your OS. 
 
 Now you have successfully converted your ext4 root partition to btrfs filesystem.
