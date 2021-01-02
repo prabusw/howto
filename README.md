@@ -1,4 +1,4 @@
-# Howto convert your (/) root partition to btrfs 
+# How to convert your (/) root partition to btrfs 
 
 This how to describes the procedure to convert your linux root partition from ext4 to btrfs. 
 
@@ -30,26 +30,26 @@ Install the OS from liveCD on with /dev/sdax as the root partition. Remember to 
 Step2.   
 Now once again boot from the liveCD, but this time, use timeshift to restore from the backup that you created and tested earlier. Once the restore is completed, reboot the system.
 
-Step3. (Academic interest only. Skip and you can go to step4 directly)  
-When you try to use the system on reboot, your regular boot up sequence will not work. The reason being, the entries for (/) root partition in the restored /etc/fstab have your ext4 filesystem based values, but your (/) root partition is on btrfs now. The (/) root partition will be mounted in read only mode and  you’ve to work in the recovery mode only for now. Reboot the system again.
+For Academic interest only. Skip and you can go to step3 directly
+When you try to use the system on reboot using regular boot up sequence, your system will not work. The reason being, the entries for (/) root partition in the restored /etc/fstab have your ext4 filesystem based values, but your (/) root partition is on btrfs now. The (/) root partition will be mounted in read only mode and  you’ve to work in the recovery mode only for now. Reboot the system again.
 
 
-Step4.  
+Step3.  
 Choose the recovery menu from the grub and drop in to the root shell. Perform the below steps as root user.
 
-4.1 Create a temporary folder tmproot on /run, which is the only writable folder for you now. 
+3.1 Create a temporary folder tmproot on /run, which is the only writable folder for you now. 
 
 #mkdir /run/tmproot
 
-4.2 Mount your  root partition on the folder as 
+3.2 Mount your  root partition on the folder as 
 
 #mount /dev/sdax /run/tmproot
 
-4.3 Find your new device UUID by using the command lsblk -f
+3.3 Find your new device UUID by using the command lsblk -f
 
 #lsblk -f
 
-4.4 Edit your /etc/fstab file and comment out the old entry for (/) root. Create a new entry by replacing the three options i.e filesystem UUID, type and options for (/) root.   
+3.4 Edit your /etc/fstab file and comment out the old entry for (/) root. Create a new entry by replacing the three options i.e filesystem UUID, type and options for (/) root.   
 The new /etc/fstab entry for (/) root will look like below after you’ve made the changes..(a truncated output of /etc/fstab given below for clarity)
 
 #cat /etc/fstab   
@@ -57,6 +57,6 @@ The new /etc/fstab entry for (/) root will look like below after you’ve made t
 #UUID=1f16d419-121a-4b71-83e8-f6e38d969dbd   /    ext4  errors=remount-ro   0  1  
 UUID=7c23009f-f0b0-4561-b576-031771763a32    /   btrfs  defaults,subvol=@   0  0  
 
-4.5 Reboot your OS. 
+3.5 Reboot your OS. 
 
-Now you have successfully converted your ext4 root partition to btrfs filesystem.
+Now you have successfully converted your ext4 (/) root partition to btrfs filesystem.
