@@ -10,8 +10,8 @@ Requirements:
 
 1.Ability to work in command line and edit files with console text editors like nano, vi etc.  
 2.Timeshift backup of your system on an external drive or on a partition different from /.   
-3.Linux LiveCD or USB boot image in it.  
-4.Backup of all your data folder, home folder etc on an external drive.  
+3.Linux Mint LiveCD or USB boot image.  
+4.Backup of all your data folder, home folder etc on an external drive.    
 
 Tested with Linux Mint20.0, which was upgraded earlier from 19.3 and the original installation was 19.2. 
 
