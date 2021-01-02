@@ -1,4 +1,4 @@
-# Howto on converting root partition to btrfs 
+# Howto convert your (/) root partition to btrfs 
 
 This how to describes the procedure to convert your linux root partition from ext4 to btrfs. 
 
