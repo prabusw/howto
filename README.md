@@ -8,14 +8,15 @@ The below steps allows you to continue using your OS with btrfs without the pain
 
 Requirements: 
 
-1.Ability to work in command line and edit files with console text editors like nano, vi etc.
-2.Timeshift backup of your system on an external drive or on a partition different from /. 
-3.LiveCD or USB disk with liveCD image in it.
-4.Backup of all your data folder, home folder etc on an external drive.
+1.Ability to work in command line and edit files with console text editors like nano, vi etc.  
+2.Timeshift backup of your system on an external drive or on a partition different from /.   
+3.LiveCD or USB disk with liveCD image in it.  
+4.Backup of all your data folder, home folder etc on an external drive.  
 
 Tested with Linux Mint20.0, which was upgraded earlier from 19.3. The original installation was 19.2. The entire process may take a few hours, as you need to finish the OS installation once and do a Timeshift restoration once. 
 
-Warning: Remember to test your timeshift backup atleast once by restoring them to a different partition and do a test drive on the restored OS/data to avoid regrets later. Also remember to test your data/home folder backup before you proceed further. Even though those partitions are untouched, it is better to test and understand the process of restoration once, if something goes wrong.
+Warning: Remember to test your timeshift backup atleast once by restoring them to a different partition and do a test drive on the restored OS/data to avoid regrets later.  
+Also remember to test your data/home folder backup before you proceed further. Even though those partitions are untouched, it is better to test and understand the process of restoration once, incase something goes wrong.
 
 The entire steps below depend on the above Timeshift backup and you are going to wipe your entire OS installation before you complete the conversion of root partition to btrfs. 
 
@@ -23,17 +24,17 @@ If your backup/restoration does not work, fix it first or learn to do it first b
 
 Note: change x in the device name to suit your needs.
 
-Step1. 
-Install the OS from liveCD on with /dev/sdax as the root partition. Remember to set the / partition filesystem to btrfs during installation. Complete the installation.
+Step1.   
+Install the OS from liveCD on with /dev/sdax as the root partition. Remember to set the (/) root partition filesystem to btrfs during installation. Complete the installation.
 
-Step2. 
+Step2.   
 Now once again boot from the liveCD, but this time, use timeshift to restore from the backup that you created and tested earlier. Once the restore is completed, reboot the system.
 
-Step3. 
-When you try to use the system, your system won’t boot into the OS. The reason being, the entries for / in the restored /etc/fstab have your ext4 filesystem based values, but your / is on btrfs now. So you’ll be able to boot into your GUI and you’ve to work in the recovery mode.
+Step3. (Academic interest only. Skip and you can go to step4 directly)  
+When you try to use the system on reboot, your regular boot up sequence will not work. The reason being, the entries for (/) root partition in the restored /etc/fstab have your ext4 filesystem based values, but your (/) root partition is on btrfs now. The (/) root partition will be mounted in read only mode and  you’ve to work in the recovery mode only for now. Reboot the system again.
 
 
-Step4. 
+Step4.  
 Choose the recovery menu from the grub and drop in to the root shell. Perform the below steps as root user.
 
 4.1 Create a temporary folder tmproot on /run, which is the only writable folder for you now. 
@@ -48,15 +49,13 @@ Choose the recovery menu from the grub and drop in to the root shell. Perform th
 
 #lsblk -f
 
-4.4 Edit your /etc/fstab file and comment out the old entry for /. Create a new entry by replacing the three options i.e filesystem UUID, type and options for (/) root. 
+4.4 Edit your /etc/fstab file and comment out the old entry for (/) root. Create a new entry by replacing the three options i.e filesystem UUID, type and options for (/) root.   
 The new /etc/fstab entry for (/) root will look like below after you’ve made the changes..(a truncated output of /etc/fstab given below for clarity)
 
-#cat /etc/fstab 
-# <file system> <mount point> <type> <options> <dump> <pass>
-  
-#UUID=1f16d419-121a-4b71-83e8-f6e38d969dbd   /    ext4  errors=remount-ro   0  1
-
-UUID=7c23009f-f0b0-4561-b576-031771763a32    /   btrfs  defaults,subvol=@   0  0
+#cat /etc/fstab   
+# <file system> <mount point> <type> <options> <dump> <pass>  
+#UUID=1f16d419-121a-4b71-83e8-f6e38d969dbd   /    ext4  errors=remount-ro   0  1  
+UUID=7c23009f-f0b0-4561-b576-031771763a32    /   btrfs  defaults,subvol=@   0  0  
 
 4.5 Reboot your OS. 
 
