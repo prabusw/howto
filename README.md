@@ -22,13 +22,13 @@ The entire process may take a few hours, as you need to finish the OS installati
 
 Warning: 
 
-Do not format other partitions like /boot/efi, /home/ and /data during installation. If your home and data are on your root partition, they need to be restored later. The entire root partition will be formatted and wiped clean. If you do not understand or not prepared with backup/restoration knowledge, do not proceed.  
+Do not format other partitions like /boot/efi, /home/ and /data during installation. If your home and data are on your root partition, they need to be restored later. The entire root partition will be formatted and wiped clean. **If you do not understand the implication or do not have backup/restoration knowledge, do not proceed.**  
 
 Remember to test your timeshift backup of the OS atleast once by restoring it to a different partition and do a test drive on the restored OS along with your data to avoid regrets later. 
 
 Do remember to test your data/home backup and restoration procedure before you proceed further. Even though those partitions are untouched, it is better to test and understand the process of restoration once, incase something goes wrong.
 
-The entire steps below depend on the above Timeshift backup and you are going to wipe your entire OS installation before you complete the conversion of root partition to btrfs. 
+The entire steps below depend on the above Timeshift backup and you are going to **wipe your entire OS installation** before you complete the conversion of root partition to btrfs. 
 
 If your backup/restoration does not work, fix it first or learn to do it first before you proceed further.
 
