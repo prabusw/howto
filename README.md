@@ -15,10 +15,17 @@ Requirements:
 
 Tested with Linux Mint20.0, which was upgraded earlier from 19.3 and the original installation was 19.2. 
 
+References: https://www.addictivetips.com/ubuntu-linux-tips/ubuntu-btrfs/  - To install with btrfs as root  
+
 Time needed:  
 The entire process may take a few hours, as you need to finish the OS installation once and do a Timeshift restoration once. 
 
-Warning: Remember to test your timeshift backup atleast once by restoring them to a different partition and do a test drive on the restored OS/data to avoid regrets later.  
+Warning: 
+
+Do not format other partitions except root. If you used your home and other data on your root partition, they need to be restored later.
+
+Remember to test your timeshift backup atleast once by restoring them to a different partition and do a test drive on the restored OS/data to avoid regrets later. 
+
 Also remember to test your data/home folder backup before you proceed further. Even though those partitions are untouched, it is better to test and understand the process of restoration once, incase something goes wrong.
 
 The entire steps below depend on the above Timeshift backup and you are going to wipe your entire OS installation before you complete the conversion of root partition to btrfs. 
@@ -28,7 +35,7 @@ If your backup/restoration does not work, fix it first or learn to do it first b
 Note: change x and y in the device names i.e /dev/sdxy to suit your needs like /dev/sda1.
 
 Step1     
-Install the OS from liveCD on with /dev/sdxy as the root partition. Remember to set the (/) root partition filesystem to btrfs during installation. Complete the installation. Verify the working of OS once before you proceed to Step 2.
+Install the OS from liveCD with /dev/sdxy as the root partition. Remember to set the (/) root partition filesystem to btrfs during installation. Complete the installation. Verify the working of OS once before you proceed to Step 2.
 
 Step2     
 Now once again boot from the liveCD, but this time, use timeshift to restore from the backup that you created and tested earlier. Once the restore is completed, reboot the system.
