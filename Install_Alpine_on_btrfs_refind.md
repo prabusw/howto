@@ -98,4 +98,4 @@ Reboot your system.
 
 `#reboot`
 
-You should now see an option to boot into Alpine Linux in the rEFInd boot menu. Once the system is booted again in alpine, install additional packages. This approach should give you a clean Alpine installation in its own subvolume.
+You should now see an option to boot into Alpine Linux in the rEFInd boot menu.
