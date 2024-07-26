@@ -1,12 +1,11 @@
 Installation Guide for Alpine Linux on a btrfs+refind system
 
-Given below is disk partition scheme and your other OS is already
-installed and working with refind as boot manager.
-
+Given below is the assumed disk partition scheme and it is also assumed that your other OS is already installed and working with refind as boot manager. If your setup differs, you need to take care of them.
+```
 dev/nvme0n1p1 -EFI appears as TYPE "vfat"
 dev/nvme0n1p2 - swap appears as TYPE "swap"
 dev/nvme0n1p3 - btrfs partition appears as TYPE "btrfs"
-
+```
 Boot your PC from the Alpine Linux USB.
 Once booted, log in as root (no password required).
 
