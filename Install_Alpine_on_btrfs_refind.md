@@ -12,13 +12,13 @@ Once booted, log in as root (no password required).
 
 Identify your partitions by using the command
 
-# blkid
+`# blkid`
 
 Mount the btrfs partition to /mnt
-# mount /dev/nvme0n1p3 /mnt -t btrfs
+`# mount /dev/nvme0n1p3 /mnt -t btrfs`
 
 Run the setup script:
-# setup-alpine
+`# setup-alpine`
 This will guide you through basic system configuration. Follow the prompts to:
 
     Select keyboard layout
@@ -33,47 +33,50 @@ This will guide you through basic system configuration. Follow the prompts to:
 Once basic setup is complete, prepare your disk for installation:
 
 Create a new Btrfs subvolume for Alpine and you need btrfs-progs package 
-# apk add btrfs-progs
+`# apk add btrfs-progs`
 Create a new Btrfs subvolume for Alpine:
+```
 # btrfs subvolume create /mnt/@alpine
 # umount /mnt
-
+```
 Mount the new subvolume and other necessary partitions:
+```
 # mount /dev/nvme0n1p3 /mnt -t btrfs
 # mkdir /mnt/os
 # mount -o subvol=@alpine /dev/nvme0n1p3 /mnt/os
-
+```
 Install the base system:
 
-# setup-disk -m sys /mnt/os
+`# setup-disk -m sys /mnt/os`
 
 This will install the base system to the mounted subvolume.
 Once the base system is installed, chroot into the new system:
 
-# chroot /mnt/os
+`# chroot /mnt/os`
 
 Edit /etc/fstab to use the correct subvolume. Ensure the root entry looks like this:
 
-/dev/nvme0n1p3 / btrfs subvol=@alpine,rw,relatime 0 1
+`/dev/nvme0n1p3 / btrfs subvol=@alpine,rw,relatime 0 1`
 
 Also verify linux kernel and firmware are installed successfully.
 
-# apk list --installed |grep linux
+`# apk list --installed |grep linux`
 
 You may want to remove the grub and grub-efi packages
 
-# apk del grub grub-efi
+`# apk del grub grub-efi`
 
 
 Exit the chroot:
 
-# exit
+`# exit`
 
 Mount the EFI partition to edit the refind.conf file
 
+```
 # mkdir /mnt/os/boot/efi
 # mount dev/nvme0n1p1 /mnt/os/boot/efi
-
+```
 Edit /mnt/os/boot/efi/EFI/refind/refind.conf to boot alpine:
 
 Add an entry for Alpine:
@@ -90,14 +93,13 @@ Save and exit the editor.
     
 Unmount everything:
 
-#umount -R /mnt
+`#umount -R /mnt`
 
 Reboot your system. You should now see an option to boot into Alpine
 Linux in the rEFInd boot menu.
 
-#reboot
+`#reboot`
 
 Once the system is booted again in alpine, install additional
 packages. This approach should give you a clean Alpine installation in
-its own subvolume, properly configured for your hardware including
-WiFi.
+its own subvolume.
