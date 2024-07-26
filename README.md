@@ -1,4 +1,3 @@
-Some How To guides are listed here
 
 [Installation Guide for Alpine Linux on a btrfs+refind system](Install_Alpine_on_btrfs_refind.md)
  
