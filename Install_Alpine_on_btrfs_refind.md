@@ -81,7 +81,7 @@ Edit /mnt/os/boot/efi/EFI/refind/refind.conf to boot alpine:
 Add an entry for Alpine:
 
     menuentry "Alpine Linux" {
-        volume   "Arch Linux"
+        volume   "BTRFSVOL"
         loader   @alpine/boot/vmlinuz-lts
         initrd   @alpine/boot/initramfs-lts
         options  "root=UUID=823a3283-30a7-4fef-b50b-8a2230c71b5b rw rootflags=subvol=@alpine rootfstype=btrfs"
